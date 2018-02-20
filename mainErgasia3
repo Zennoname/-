@@ -1,0 +1,12 @@
+string = raw_input("Enter text: ")
+var = ""
+for i in range(len(string)):
+    if((string[i]<= 'Z' and string[i]>='A') or (string[i]<='z' and string[i]>='a')):
+        # edw tha ginei kodikopoihsh me ROT13
+        if(string[i] <= 'M' or string[i] <= 'm'):
+            var += chr(ord(string[i])+13)
+        else:
+            var += chr(ord(string[i]) - 13)
+    else:
+        var += string[i]  # oi arithmoi kai alla symbola den lambanonte ypopsin
+print(var)

@@ -1,0 +1,37 @@
+number = 0
+stringLatin = ""
+var = raw_input("Enter an integer from 1 - 1000000: ")
+while(True):
+    if( var.isdigit() ):
+        number = int(var)
+        if(number >= 1 and number <= 1000000):
+            break
+    var = raw_input("It has to be an integer from 1 - 1000000, please enter again: ")
+latinList = [(1000000, 'M(-)'), (900000, 'C(-)M(-)'), (500000, 'D(-)'), (400000, 'C(-)D(-)'),
+             (100000, 'C(-)'), (90000, 'X(-)C(-)'), (50000, 'L(-)'), (40000, 'X(-)L(-)'),
+             (10000, 'X(-)'), (9000, 'MX(-)'), (5000, 'V(-)'), (4000, 'MV(-)'),
+             (1000, 'M'), (900, 'CM'), (500, 'D'), (400, 'CD'),
+             (100, 'C'), (90, 'XC'), (50, 'L'), (40, 'XL'),
+             (10, 'X'), (9, 'IX'), (5, 'V'), (4, 'IV'), (1, 'I')
+]
+while (number > 0):
+    for i, j in latinList:
+        while (number >= i):
+            stringLatin += j
+            number -= i
+print("The latin equivalent is {}").format(stringLatin)
+
+#                                   LATIN NUMBERS 1 - 1.000.000
+# 900K = C(-)M(-)   600K,700K,800K = D(-)C(-), D(-)C(-)C(-), D(-)C(-)C(-)C(-)       500K = D(-)
+# 90K = X(-)C(-)    60K,70K,80K = L(-)X(-), L(-)X(-)X(-), L(-)X(-)X(-)X(-)          50K = L(-)
+# 9K = MX(-)        6K,7K,8K = V(-)M, V(-)MM, V(-)MMM                               5K = V(-)
+# 900 = CM          600,700,800 = DC, DCC, DCCC                                     500 = D
+# 90 = XC           60,70,80 = LX, LXX, LXXX                                        50 = L
+# 9 = IX            6,7,8 = VI, VII, VIII                                           5 = V
+
+# 400K = C(-)D(-)   100K,200K,300K = C(-), C(-)C(-), C(-)C(-)C(-)
+# 40K = X(-)L(-)    10K,20K,30K = X(-), X(-)X(-), X(-)X(-)X(-)
+# 4K = MV(-)        1K,2K,3K = M, MM, MMM
+# 400 = CD          100,200,300 = C, CC, CCC
+# 40 = XL           10,20,30 = X, XX, XXX
+# 4 = IV            1,2,3 = I, II, III

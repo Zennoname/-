@@ -1,0 +1,47 @@
+def counter(n, s, firstDigit, previousDigit):  # anadromikh synartish, pianei ena psifio kai meta testarei kathe arithmo
+    if (s == 0):                               # pigenontas meta sto proigoumeno psifio mexri na ftasei se syndiasmo pou
+        return 1                               # na mhdenizei to S , xrisimopoiontas thn previous digit gia na kratisei
+    if (n == 0):                               # thn aujousa seira
+        return 0
+    count = 0
+    if (n == firstDigit):
+        for i in range(1, 10):
+            if (s - i >= 0):
+                count += counter(n-1, s-i, firstDigit, i)
+        return count
+    else:
+        for i in range(previousDigit, 10):
+            if (s - i >= 0):
+                count += counter(n-1, s-i, firstDigit, i)
+        return count
+
+
+n = 0
+s = 0
+var = raw_input("Enter the number of digits: ")
+while(True):
+    if( var.isdigit() ):
+        n = int(var)
+        if(n >= 0):
+            break
+    var = raw_input("It has to be an integer >= 0, please enter the number of digits again: ")
+
+var2 = raw_input("Enter the sum you want: ")
+while(True):
+    if( var2.isdigit() ):
+        s = int(var2)
+        if(s >= 0):
+            break
+    var2 = raw_input("It has to be an integer >= 0, please enter the sum again: ")
+
+count = 0
+
+if(s == 0):     # an to athroisma einai 0 ola ta psifia prepei an einai 0
+    count = 1
+elif( s > n*9):  # to megisto athroisma einai 9* to plithos twn psifiwn
+    count = 0
+elif( n == 0):
+    count = 0
+else:
+    count = counter(n, s, n, 0)
+print(count)

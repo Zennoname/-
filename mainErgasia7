@@ -1,0 +1,37 @@
+import datetime
+now = datetime.date.today()
+y = int(now.year)
+d = int(now.day)
+m = int(now.month)
+count = 0
+
+#Xrisimopoiw mia methodo pou brika gia na ypologizw thn mera, pianw thn shmerinh mera ws TargetDate kai koitaw
+#sta epomena 10 xronia an tha janapesei oloidia hmeromhnia
+
+monthCode = [0, 3, 3, 6, 1, 4, 6, 2, 5, 0, 3, 5]
+centuryCodes = [4, 2, 0, 6]
+weekDay = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+targetDay = 0
+for i in range(0, 11):
+    tempyear = y+i
+    century = tempyear/100
+    year = tempyear % 100
+    check = abs(century-17) % 4
+
+    yearCode = (year+(year/4)) % 7
+    leapYearCode = 0
+
+    if (tempyear % 4 == 0):
+        if (tempyear % 100 != 0 or tempyear % 400 == 0):
+            if (m == 1 or m == 2):
+                leapYearCode = 1
+
+    final = (yearCode + monthCode[m] + centuryCodes[check] + d - leapYearCode) % 7
+    if (i == 0):
+        targetDay = final
+    elif targetDay == final:
+        count += 1
+print("This date will occur {} more time(s) in the next 10 years").format(count)
+#print(weekDay[final])
+#print(weekDay[targetDay])
+#print(now.today())
